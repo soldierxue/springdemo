@@ -10,31 +10,30 @@ import org.springframework.stereotype.Service;
  */
 public class UserServiceImplMemory implements IUserService { 
     
-    private void UserServiceImplMemory(){};
     
     // 创建线程安全的Map 
-    static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>()); 
+    private static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>()); 
     
-    public  List<User> getAllUsers(){
+    public static List<User> getAllUsers(){
         List<User> r = new ArrayList<User>(users.values()); 
         return r;
     }
     
-    public User findUserById(Long id){
+    public static User findUserById(Long id){
         return users.get(id); 
         
     }
-    public String saveUser(User user){
+    public static String saveUser(User user){
         users.put(user.getId(), user);
         return "success";
     }
     
-    public String deleteUser(Long id){
+    public static String deleteUser(Long id){
         users.remove(id); 
         return "success"; 
     }
     
-    public String updateUser(User user){
+    public static String updateUser(User user){
         Long id = user.getId();
         User u = users.get(id); 
         u.setName(user.getName()); 

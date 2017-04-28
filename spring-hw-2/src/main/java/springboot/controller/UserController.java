@@ -12,7 +12,7 @@ import springboot.services.*;
 @RequestMapping(value="/users") 
 public class UserController { 
     
-    private IUserService userService = new UserServiceImplMemory();
+    private UserServiceImplMemory userService;
     
     @RequestMapping(value="/", method=RequestMethod.GET) 
     public List<User> getUserList() { 
