@@ -12,7 +12,6 @@ import services.*;
 @RequestMapping(value="/users")    
 public class UserController { 
     
-    @Autowired
     private IUserService userService = new UserServiceImplMemory();
     
     @RequestMapping(value="/", method=RequestMethod.GET) 
