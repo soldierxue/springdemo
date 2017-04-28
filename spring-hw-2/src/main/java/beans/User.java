@@ -12,7 +12,7 @@ public class User {
     public String getName(){
         return this.name;
     }
-    public String getAge(){
+    public Integer getAge(){
         return this.age;
     }
     public void setId(Long id){

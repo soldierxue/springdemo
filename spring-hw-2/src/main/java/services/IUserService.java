@@ -10,7 +10,7 @@ public interface IUserService {
      */
     public  List<User> getAllUsers();
     public User findUserById(Long id);
-    public Sring saveUser(User u);
+    public String saveUser(User u);
     public String deleteUser(User u);
     public String UpdateUser(User u);
 

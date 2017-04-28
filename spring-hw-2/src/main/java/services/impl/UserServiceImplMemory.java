@@ -1,7 +1,7 @@
 package services.impl;
 
 import beans.User;
-import beans.services.IUserService;
+import services.IUserService;
 import java.util.*;
 /*
  * Service Implement for user service using memory Map storage
@@ -20,18 +20,18 @@ public class UserServiceImplMemory implements IUserService {
         return users.get(id); 
         
     }
-    public Sring saveUser(User u){
+    public String saveUser(User user){
         users.put(user.getId(), user);
         return "success";
     }
     
-    public String deleteUser(User u){
+    public String deleteUser(Long id){
         users.remove(id); 
         return "success"; 
     }
     
-    public String UpdateUser(User u){
-        Long id = u.getId();
+    public String UpdateUser(User user){
+        Long id = user.getId();
         User u = users.get(id); 
         u.setName(user.getName()); 
         u.setAge(user.getAge()); 
