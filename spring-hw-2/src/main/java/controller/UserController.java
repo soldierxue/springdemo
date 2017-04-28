@@ -1,4 +1,4 @@
-package springboot.controller;
+package controller;
 
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import services.*;
 
 
 @RestController 
-@RequestMapping(value="/users")    
+@RequestMapping(value="/users") 
 public class UserController { 
     
     private IUserService userService = new UserServiceImplMemory();
