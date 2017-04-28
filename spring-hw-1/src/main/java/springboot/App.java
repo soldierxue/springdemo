@@ -1,5 +1,6 @@
 package springboot;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Spring boot demo: Non Web Application Hello World!
  *
@@ -10,7 +11,6 @@ public class App
     public static void main( String[] args )
     {
         //System.out.println( "Hello World!" );
-        SpringApplication app = new SpringApplication(App.class);
-        app.run(args);
+        SpringApplication.run(App.class,args);
     }
 }
