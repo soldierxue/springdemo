@@ -7,7 +7,7 @@ import java.util.*;
 import services.impl.*;
 import services.*;
 
-
+@UserServiceImplMemory
 @RestController 
 @RequestMapping(value="/users")    
 public class UserController { 
