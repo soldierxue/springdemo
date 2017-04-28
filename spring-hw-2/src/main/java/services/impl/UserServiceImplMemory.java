@@ -3,12 +3,14 @@ package services.impl;
 import beans.User;
 import services.IUserService;
 import java.util.*;
-import org.springframework.stereotype.Component;
+
 /*
  * Service Implement for user service using memory Map storage
  */
-@Component
+
 public class UserServiceImplMemory implements IUserService { 
+    
+    private void UserServiceImplMemory(){};
     
     // 创建线程安全的Map 
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>()); 
