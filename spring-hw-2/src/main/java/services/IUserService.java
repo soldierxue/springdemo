@@ -11,7 +11,7 @@ public interface IUserService {
     public  List<User> getAllUsers();
     public User findUserById(Long id);
     public String saveUser(User u);
-    public String deleteUser(User u);
-    public String UpdateUser(User u);
+    public String deleteUser(Long id);
+    public String updateUser(User u);
 
 }

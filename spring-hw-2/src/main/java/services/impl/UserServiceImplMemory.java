@@ -30,7 +30,7 @@ public class UserServiceImplMemory implements IUserService {
         return "success"; 
     }
     
-    public String UpdateUser(User user){
+    public String updateUser(User user){
         Long id = user.getId();
         User u = users.get(id); 
         u.setName(user.getName()); 
