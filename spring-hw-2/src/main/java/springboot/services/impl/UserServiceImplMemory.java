@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 /*
  * Service Implement for user service using memory Map storage
  */
-public class UserServiceImplMemory implements IUserService { 
+public class UserServiceImplMemory  { 
     
     
     // 创建线程安全的Map 
