@@ -6,11 +6,15 @@ import springboot.beans.User;
 import java.util.*;
 import springboot.services.impl.*;
 import springboot.services.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @RestController 
 @RequestMapping(value="/users") 
 public class UserController { 
+    
+    private final Logger logger = LoggerFactory.getLogger(UserController.class);
     
     private IUserService userService=new UserServiceImplMemory();
     
@@ -25,7 +29,7 @@ public class UserController {
     public String postUser(@ModelAttribute User user) { 
         // 处理"/users/"的POST请求，用来创建User 
         // 除了@ModelAttribute绑定参数之外，还可以通过@RequestParam从页面中传递参数 
-        System.out.println("User:"+user.getId()+","+user.getName()+","+user.getAge());
+        logger.debug("User:"+user.getId()+","+user.getName()+","+user.getAge());
         return userService.saveUser(user); 
     } 
  
