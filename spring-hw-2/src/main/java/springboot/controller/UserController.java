@@ -30,6 +30,7 @@ public class UserController {
         // 处理"/users/"的POST请求，用来创建User 
         // 除了@ModelAttribute绑定参数之外，还可以通过@RequestParam从页面中传递参数 
         logger.debug("User:"+user.getId()+","+user.getName()+","+user.getAge());
+        logger.info("User:"+user.getId()+","+user.getName()+","+user.getAge());
         return userService.saveUser(user); 
     } 
  
