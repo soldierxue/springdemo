@@ -16,7 +16,8 @@ public class UserController {
     
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
     
-    private IUserService userService=new UserServiceImplMemory();
+    @Autowired
+    private IUserService userService;
     
     @RequestMapping(value="/", method=RequestMethod.GET) 
     public List<User> getUserList() { 
@@ -28,7 +29,7 @@ public class UserController {
     @RequestMapping(value="/", method=RequestMethod.POST) 
     public String postUser(@ModelAttribute User user) { 
         // 处理"/users/"的POST请求，用来创建User 
-        // 除了@ModelAttribute绑定参数之外，还可以通过@RequestParam从页面中传递参数 
+        // 除了@ModelAttribute绑定参数之外，还可以@RequestParam从页面中传递参数 
         logger.debug("User:"+user.getId()+","+user.getName()+","+user.getAge());
         logger.info("User:"+user.getId()+","+user.getName()+","+user.getAge());
         return userService.saveUser(user); 
