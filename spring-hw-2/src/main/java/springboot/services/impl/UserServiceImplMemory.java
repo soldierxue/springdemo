@@ -22,26 +22,26 @@ public class UserServiceImplMemory implements IUserService  {
         users.put(u.getId(),u);
     }
     
-    public static List<User> getAllUsers(){
+    public  List<User> getAllUsers(){
         List<User> r = new ArrayList<User>(users.values()); 
         return r;
     }
     
-    public static User findUserById(Long id){
+    public  User findUserById(Long id){
         return users.get(id); 
         
     }
-    public static String saveUser(User user){
+    public  String saveUser(User user){
         users.put(user.getId(), user);
         return "save success";
     }
     
-    public static String deleteUser(Long id){
+    public  String deleteUser(Long id){
         users.remove(id); 
         return "delete success"; 
     }
     
-    public static String updateUser(User user){
+    public  String updateUser(User user){
         Long id = user.getId();
         User u = users.get(id); 
         u.setName(user.getName()); 
