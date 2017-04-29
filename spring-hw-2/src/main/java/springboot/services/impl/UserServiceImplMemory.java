@@ -8,11 +8,19 @@ import org.springframework.stereotype.Service;
 /*
  * Service Implement for user service using memory Map storage
  */
-public class UserServiceImplMemory  { 
+public class UserServiceImplMemory implements IUserService  { 
     
     
     // 创建线程安全的Map 
     private static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>()); 
+    
+    static{
+        User u = new User();
+        u.setId(Long.valueOf(122));
+        u.setName("tst");
+        u.setAge(12);
+        users.put(u.getId(),u);
+    }
     
     public static List<User> getAllUsers(){
         List<User> r = new ArrayList<User>(users.values()); 
@@ -25,12 +33,12 @@ public class UserServiceImplMemory  {
     }
     public static String saveUser(User user){
         users.put(user.getId(), user);
-        return "success";
+        return "save success";
     }
     
     public static String deleteUser(Long id){
         users.remove(id); 
-        return "success"; 
+        return "delete success"; 
     }
     
     public static String updateUser(User user){
@@ -39,7 +47,7 @@ public class UserServiceImplMemory  {
         u.setName(user.getName()); 
         u.setAge(user.getAge()); 
         users.put(id, u); 
-        return "success"; 
+        return "update success"; 
     }
 
 }
