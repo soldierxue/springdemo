@@ -68,6 +68,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${springboot.version}</version>
                 <configuration>
                 	<!-- Does not bundle a bootstrap loader. (e.g. classes and libs are not loaded into a BOOT-INF directory
                 	Pre version 1.4.0.RELEASE of Spring Boot - this was default but if you do not specify this layout for version 1.4.0.RELEASE
