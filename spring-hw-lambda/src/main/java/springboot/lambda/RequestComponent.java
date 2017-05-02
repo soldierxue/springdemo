@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import springboot.lambda.*;
+import com.amazonaws.services.lambda.runtime.Context;
 /**
  * 
  */
