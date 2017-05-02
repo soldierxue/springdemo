@@ -15,7 +15,6 @@ import springboot.lambda.*;
  * Spring boot demo: Non Web Application Hello World!
  *
  */
-@SpringBootApplication
 public class App 
 {
     public static void main( String[] args )
