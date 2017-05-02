@@ -24,7 +24,7 @@ public class RequestComponent {
     @Autowired
     Environment environment;
 
-    @Value(value = "${configtest.value}")
+    @Value(value = "${configtest.value:default config value2}")
     private String configValue;
 
     public String processRequest(String name, Context context) {
