@@ -19,7 +19,7 @@ public class HelloLambda implements RequestHandler <String, String> {
      */
     public static void main(String[] args) {
         SpringBootInvocation springBootInvocation =  new SpringBootInvocation();
-        springBootInvocation.run(HelloLambda.class);
+        springBootInvocation.run();
         springBootInvocation.getApplicationContext().getBean(RequestSrv.class).processRequest("jasonxue",null);
     }
 }

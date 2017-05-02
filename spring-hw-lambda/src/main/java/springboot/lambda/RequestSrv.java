@@ -16,7 +16,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 @Component
 @Scope("prototype")
 public class RequestSrv {
-    static Log log = LogFactory.getLog(RequestComponent.class);
+    static Log log = LogFactory.getLog(RequestSrv.class);
 
     @Autowired
     ApplicationContext applicationContext;
@@ -35,14 +35,14 @@ public class RequestSrv {
         log.info("Test Configuration value  = "+ configValue);
         log.info("env value = " + environment.getProperty("configtest.value"));
         if(context != null){
-            log.infor("AWS request ID:"+ context.getAwsRequestId());
+            log.info("AWS request ID:"+ context.getAwsRequestId());
             log.info("Function name: " + context.getFunctionName());
             log.info("Max mem allocated: " + context.getMemoryLimitInMB());
             log.info("Time remaining in milliseconds: " + context.getRemainingTimeInMillis());
             log.info("CloudWatch log stream name: " + context.getLogStreamName());
             log.info("CloudWatch log group name: " + context.getLogGroupName());          
             log.info("CloudWatch log group name: " + context.getLogGroupName());  
-            log.infor("Client Context:"+ context.getClientContext());            
+            log.info("Client Context:"+ context.getClientContext());            
         }
 
         return String.format("Hello %s.", name);
