@@ -12,12 +12,14 @@ public class HelloLambda implements RequestHandler <String, String> {
     public String handleRequest(String name, Context context) {
         SpringBootInvocation springBootInvocation =  new SpringBootInvocation();
         springBootInvocation.run();
-        return springBootInvocation.getApplicationContext().getBean(RequestComponent.class).processRequest(name,context);
+        return springBootInvocation.getApplicationContext().getBean(RequestSrv.class).processRequest(name,context);
     }
-
+    /*
+     * Local Test Main
+     */
     public static void main(String[] args) {
         SpringBootInvocation springBootInvocation =  new SpringBootInvocation();
-        springBootInvocation.run();
-        springBootInvocation.getApplicationContext().getBean(RequestComponent.class).processRequest("Robert",null);
+        springBootInvocation.run(HelloLambda.class);
+        springBootInvocation.getApplicationContext().getBean(RequestSrv.class).processRequest("jasonxue",null);
     }
 }

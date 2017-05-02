@@ -41,10 +41,4 @@ public class SpringBootInvocation {
     public ApplicationContext getApplicationContext() {
         return applicationContext;
     }
-
-    @Bean
-    @Scope("prototype")
-    public TestConfiguration testConfiguration() {
-        return new TestConfiguration();
-    }
 }
