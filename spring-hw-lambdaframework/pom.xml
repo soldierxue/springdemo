@@ -37,17 +37,18 @@
     </dependencyManagement>
    
   <dependencies>
-   <!-- Spring Boot -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter</artifactId>
-    </dependency>   
     <!-- Lambada framework dependency-->  
     <dependency>
         <groupId>org.lambadaframework</groupId>
         <artifactId>runtime</artifactId>
         <version>${lambadafw.version}</version>
-    </dependency>      
+    </dependency>       
+   <!-- Spring Boot -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+    </dependency>   
+     
     <!-- AWS Lambda logging dependencies -->   
     <dependency>
         <groupId>com.amazonaws</groupId>
