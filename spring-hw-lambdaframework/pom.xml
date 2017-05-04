@@ -1,0 +1,144 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>demo.soldierxue</groupId>
+  <artifactId>spring-hw-lambdaframework</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0</version>
+  <name>spring-hw-lambdaframework</name>
+  <url>https://github.com/soldierxue/springdemo</url>  
+   <properties>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     <commons-logging.version>1.2</commons-logging.version> 
+     <springboot.version>1.5.3.RELEASE</springboot.version>
+     <lambadafw.version>0.0.6</lambadafw.version>
+     <deployment.bucket>lambada-jason</deployment.bucket>
+     <deployment.package>springboot.controller</deployment.package>
+     <!-- Region to deploy-->
+     <deployment.region>us-east-1</deployment.region>
+     <!-- Stage to deploy -->
+     <deployment.stage>production</deployment.stage>
+     <!-- Maximum execution time for lambda -->
+     <deployment.maximumExecutionTime>10</deployment.maximumExecutionTime>
+     <!-- Maximum allowed memory usage for lambda -->
+     <deployment.lambdaMemorySize>1024</deployment.lambdaMemorySize>       
+   </properties> 
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <type>pom</type>
+                <version>${springboot.version}</version>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+   
+  <dependencies>
+   <!-- Spring Boot -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+    </dependency>   
+    <!-- Lambada framework dependency-->  
+    <dependency>
+        <groupId>org.lambadaframework</groupId>
+        <artifactId>runtime</artifactId>
+        <version>${lambadafw.version}</version>
+    </dependency>      
+    <!-- AWS Lambda logging dependencies -->   
+    <dependency>
+        <groupId>com.amazonaws</groupId>
+        <artifactId>aws-lambda-java-log4j</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+    <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>${commons-logging.version}</version>
+    </dependency>
+    <!-- Good old JUnit for testing -->  
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+      
+  </dependencies>
+  <build>
+		<plugins>
+			<!-- Package as an executable jar -->
+            <plugin>
+                <groupId>org.lambadaframework</groupId>
+                <artifactId>lambada-maven-plugin</artifactId>
+                <version>${lambadafw.version}</version>
+                <configuration>
+                    <packageName>${deployment.package}</packageName>
+                    <regionToDeploy>${deployment.region}</regionToDeploy>
+                    <stageToDeploy>${deployment.stage}</stageToDeploy>
+                    <lambdaMaximumExecutionTime>${deployment.maximumExecutionTime}</lambdaMaximumExecutionTime>
+                    <lambdaMemorySize>${deployment.lambdaMemorySize}</lambdaMemorySize>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>demo.soldierxue</groupId>
+                        <artifactId>spring-hw-lambdaframework</artifactId>
+                        <version>1.0</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare</goal>
+                            <goal>deploy</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--
+            Maven Shade plugin packages the project to a fat JAR with all required dependencies.
+            With minimum dependencies it should create a 5 MB jar file.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <!-- It is important to NOT to activate minimizeJar option -->
+                    <minimizeJar>false</minimizeJar>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+		</plugins>
+	</build>
+    <distributionManagement>
+        <repository>
+            <id>aws-releases</id>
+            <name>AWS Release Repository</name>
+            <url>s3://${deployment.bucket}/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>aws-snapshots</id>
+            <name>AWS Snapshot Repository</name>
+            <url>s3://${deployment.bucket}/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>    
+</project>
