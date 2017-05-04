@@ -21,7 +21,7 @@ import springboot.services.impl.*;
 public class UserRSController {
 
 
-    private IUserService userService  = new UserServiceImpl();
+    private IUserService userService  = new UserServiceImplMemory();
     
     static final Logger logger = Logger.getLogger(UserRSController.class);
 
