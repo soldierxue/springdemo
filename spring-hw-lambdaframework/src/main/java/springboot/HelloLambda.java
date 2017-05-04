@@ -1,11 +1,10 @@
 package springboot;
 
-import com.amazonaws.services.lambda.runtime.*;
 import springboot.lambda.*;
 /*
  * Hello Lambda Demo
  */
-public class HelloLambda implements RequestHandler <String, String> {
+public class HelloLambda  {
     /*
      * Local Test Main
      */

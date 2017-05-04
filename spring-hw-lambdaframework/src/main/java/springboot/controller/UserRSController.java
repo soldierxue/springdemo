@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
@@ -14,6 +15,7 @@ import springboot.services.*;
 import springboot.services.impl.*;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Path("/")
 @Component
@@ -24,15 +26,6 @@ public class UserRSController {
     private IUserService userService;
     
     static final Logger logger = Logger.getLogger(UserRSController.class);
-
-    static class Entity {
-        public int id = 1;
-        public String name;
-
-        public Entity(String name) {
-            this.name = name;
-        }
-    }
 
     @GET
     @Path("/users")
@@ -46,8 +39,8 @@ public class UserRSController {
 
     @GET
     @Path("/users/{id}")
-    public Response exampleEndpoint(
-            @PathParam("id") String id
+    public Response getUserById(
+            @PathParam("id") Long id
     ) {
 
         logger.debug("Request got by user id");
@@ -64,7 +57,7 @@ public class UserRSController {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/user")
-    public Response exampleSecondEndpointPost(
+    public Response newUser(
             User user
     ) {
 
@@ -79,7 +72,7 @@ public class UserRSController {
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/user")
-    public Response exampleSecondEndpointPost(
+    public Response updateUser(
             User user
     ) {
 
