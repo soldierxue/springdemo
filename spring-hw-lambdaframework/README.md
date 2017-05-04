@@ -9,6 +9,7 @@ Based on spring-hw-labmbda, this demo try to make use of  [Lambada Framework](ht
 In root folder fire
 
 ```
+mvn clean package
 mvn deploy
 ```
 

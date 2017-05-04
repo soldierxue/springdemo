@@ -13,17 +13,15 @@ import javax.ws.rs.core.Response;
 import springboot.beans.*;
 import springboot.services.*;
 import springboot.services.impl.*;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.context.annotation.Scope;
+//import org.springframework.stereotype.Component;
+//import org.springframework.beans.factory.annotation.Autowired;
 
 @Path("/")
-@Component
-@Scope("prototype")
 public class UserRSController {
 
-    @Autowired
-    private IUserService userService;
+
+    private IUserService userService  = new UserServiceImpl();
     
     static final Logger logger = Logger.getLogger(UserRSController.class);
 
